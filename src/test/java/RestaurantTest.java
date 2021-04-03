@@ -48,6 +48,31 @@ class RestaurantTest {
         assertEquals(initialMenuSize+1,restaurant.getMenu().size());
     }
     @Test
+    public void calculate_amount_to_total_order_selected() throws itemNotFoundException{
+
+        restaurant.addToMenu("Sweet corn soup",119);
+        restaurant.addToMenu("Vegetable lasagne", 269);
+        assertEquals(388,restaurant.calculateOrder(new String[]{"Sweet corn soup","Vegetable lasagne"}));
+    }
+    @Test
+    public void order_not_found_then_throw_exception() throws itemNotFoundException{
+
+
+        restaurant.addToMenu("Sweet corn soup",119);
+        restaurant.addToMenu("Vegetable lasagne", 269);
+        assertThrows(itemNotFoundException.class,()->restaurant.calculateOrder(new String[]{"Paneer Bhurji"}));
+
+    }
+    @Test
+    public void order_not_selected_should_return_zero()throws itemNotFoundException{
+
+
+        restaurant.addToMenu("Sweet corn soup",119);
+        restaurant.addToMenu("Vegetable lasagne", 269);
+        assertEquals(0,restaurant.calculateOrder(new String[0]));
+    }
+
+    @Test
     public void removing_item_from_menu_should_decrease_menu_size_by_1() throws itemNotFoundException {
 
         restaurant.addToMenu("Sweet corn soup",119);

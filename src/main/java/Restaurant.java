@@ -26,6 +26,9 @@ public class Restaurant {
             return true;
         }
     }
+    public int calculateOrder (String[] totalOrder) throws itemNotFoundException{
+        return -1;
+    }
 
     public LocalTime getCurrentTime(){ return  LocalTime.now(); }
 
