@@ -27,7 +27,22 @@ public class Restaurant {
         }
     }
     public int calculateOrder (String[] totalOrder) throws itemNotFoundException{
-        return -1;
+        if (totalOrder.length > 0) {
+            int sum = 0;
+            for (String order : totalOrder) {
+                Item eachItem = findItemByName(order);
+                if (eachItem == null) {
+                    throw new itemNotFoundException("item not in the list");
+                }
+                else {
+                    sum = sum + eachItem.getPrice();
+                }
+            }
+            return sum;
+
+        } else {
+            return 0;
+        }
     }
 
     public LocalTime getCurrentTime(){ return  LocalTime.now(); }
